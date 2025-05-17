@@ -1,0 +1,46 @@
+{
+  "name": "zipaper",
+  "version": "0.1.0",
+  "description": "一个简单易用的小巧前端框架",
+  "main": "./dist/Zipaper.min.js",
+  "typings": "./types/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "dev": "oipage-cli serve --config ./oipage.config.js",
+    "build": "rollup --config ./rollup.config.js && terser ./dist/Zipaper.js --compress --mangle --output ./dist/Zipaper.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oi-contrib/Zipaper.git"
+  },
+  "keywords": [
+    "framework",
+    "web",
+    "page",
+    "vue",
+    "react"
+  ],
+  "author": {
+    "name": "zxl20070701",
+    "url": "https://zxl20070701.github.io/notebook/home.html"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oi-contrib/Zipaper/issues"
+  },
+  "homepage": "https://oi-contrib.github.io/Zipaper",
+  "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "rollup": "^4.6.1",
+    "terser": "^5.17.1",
+    "xhtml-to-json": "^0.1.0"
+  },
+  "dependencies": {
+    "eval-express": "^0.1.1",
+    "oipage": "^1.2.1",
+    "vislite": "^1.3.0"
+  }
+}

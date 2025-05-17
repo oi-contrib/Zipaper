@@ -1,0 +1,38 @@
+<header>
+    z-on
+</header>
+<div class="version">
+    始于 v0.1.0
+</div>
+<h2>
+    使用
+</h2>
+<p>
+    绑定事件，例如：
+</p>
+<pre>
+&lt;button z-on:click="doit"&gt;按钮&lt;/button&gt;
+</pre>
+<p>
+    此外，还可以添加修饰符，比如：
+</p>
+<pre>
+&lt;button z-on:click.stop.once="doit"&gt;按钮&lt;/button&gt;
+</pre>
+<p>
+    修饰符可以使用任意多个，可选的如下：
+</p>
+<ul>
+    <li>
+        prevent：阻止默认事件
+    </li>
+    <li>
+        stop：阻止冒泡
+    </li>
+    <li>
+        once：只执行一次
+    </li>
+    <li>
+        enter：回车
+    </li>
+</ul>

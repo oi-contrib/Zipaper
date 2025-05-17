@@ -1,0 +1,44 @@
+<header>
+    defineRouter
+</header>
+<div class="version">
+    始于 v0.1.0
+</div>
+<h2>
+    引入
+</h2>
+<pre>
+import { defineRouter } from "zipaper";
+</pre>
+<h2>
+    使用
+</h2>
+<p>
+    比如：
+</p>
+<pre>
+defineRouter({
+    routers: [{
+        path: "/",
+        redirect: "/page1"
+    }, {
+        path: "/page1",
+        component: () => import("./pages/page1/index.js"),
+    }, {
+        path: "/page2",
+        component: () => import("./pages/page2/index.js"),
+    }]
+})
+</pre>
+<p>
+    定义好路由以后，直接在需要路由切换的地方添加（支持多级路由，通过children属性配置子路由）：
+</p>
+<pre>
+&lt;router&gt;&lt;/router&gt;
+</pre>
+<p>
+    代码中触发跳转的例子：
+</p>
+<pre>
+this.$goto("/page1")
+</pre>

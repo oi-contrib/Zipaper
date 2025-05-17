@@ -1,0 +1,57 @@
+<div class="doc-nav">
+    <div class="menu">
+        <h2>一、快速开始</h2>
+        <h3 onClick="loadDoc('initProject')">
+            项目初始化
+        </h3>
+        <h3 onClick="loadDoc('children-router')">
+            如何配置多级路由？
+        </h3>
+        <h2>
+            二、组件开发
+        </h2>
+        <h3 onClick="loadDoc('prop_emit')">
+            父子之间数据传递
+        </h3>
+    </div>
+    <div class="doc-content" id="doc-content"></div>
+</div>
+
+<style>
+    .doc-nav {
+        display: flex;
+        background-color: #f9f9f9;
+    }
+
+    .doc-nav>.menu,
+    .doc-nav>.content {
+        height: calc(100vh - 55px);
+        overflow: auto;
+    }
+
+    .doc-nav>.menu {
+        flex-basis: 260px;
+        padding: 10px 0;
+        font-weight: 800;
+        line-height: 20px;
+    }
+
+
+    .doc-nav>.menu>h2 {
+        margin-top: 10px;
+        font-size: 14px;
+        margin-left: 10px;
+    }
+
+    .doc-nav>.menu>h3 {
+        font-size: 14px;
+        cursor: pointer;
+        text-decoration: underline;
+        margin-left: 40px;
+    }
+
+    .doc-nav>.content {
+        flex-grow: 1;
+        border-left: 1px solid rgb(221, 221, 218);
+    }
+</style>

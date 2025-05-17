@@ -1,0 +1,26 @@
+<div class="app-view">
+    <h1>
+        测试用例 | Zipaper
+    </h1>
+    <h2>
+        内置指令
+    </h2>
+    <input z-model="val1" />
+    <span>输入框的值：<i z-bind="val1"></i></span>
+    <button z-on:click="setVal1">点击我修改val1</button>
+    <h2>
+        自定义组件
+    </h2>
+    <ui-input></ui-input>
+    <ui-select-file z-on:change="doChange" z-bind:title="title" tips="选择一份或多份PDF文件后，可以把这些文件转成图片"></ui-select-file>
+    <h2>
+        自定义指令
+    </h2>
+    <input type="text" z-readonly>
+    <h2>
+        路由
+    </h2>
+    <button tag="/page1" z-on:click="goto">page1</button>
+    <button tag="/page2" z-on:click="goto">page2</button>
+    <router></router>
+</div>

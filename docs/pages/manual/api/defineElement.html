@@ -1,0 +1,138 @@
+<header>
+    defineElement
+</header>
+<div class="version">
+    始于 v0.1.0
+</div>
+<h2>
+    引入
+</h2>
+<pre>
+import { defineElement } from "zipaper";
+</pre>
+<h2>
+    使用
+</h2>
+<pre>
+let element = defineElement(option);
+</pre>
+<p>
+    其中option是一个JSON，用于定义页面或组件具体行为。
+</p>
+<h3>
+    template
+</h3>
+<p>
+    定义模板内容：
+</p>
+<pre>
+type TemplateType = Array<{
+    name: string
+    attr: {
+        [key:string]: string
+    },
+    children: TemplateType
+}>
+
+option.template = TemplateType
+</pre>
+<h3>
+    style
+</h3>
+<p>
+    定义样式内容：
+</p>
+<pre>
+option.template = {
+    content: string
+}
+</pre>
+<h3>
+    created
+</h3>
+<p>
+    组件实例创建好后执行：
+</p>
+<pre>
+option.created = function(){
+    // todo
+}
+</pre>
+<h3>
+    emits
+</h3>
+<p>
+    如果作为一个组件使用，可以为此组件注册的事件：
+</p>
+<pre>
+option.emits = ["change"]
+</pre>
+<p>
+    那么，使用组件的时候就可以：
+</p>
+<pre>
+&lt;ui-demo z-on:change="doit"&gt;&lt;/ui-demo&gt;
+</pre>
+<p>
+    组件内部使用$emit触发事件：
+</p>
+<pre>
+// 这里的data就是上面doit的第一个参数event的data属性，可选
+this.$emit("change", data)
+</pre>
+<h3>
+    props
+</h3>
+<p>
+    用于使用组件的时候父组件传递数据给组件，比如：
+</p>
+<pre>
+option.props = {
+    attr1: {
+        type: String, // 类型
+        required: true, // 是否必输
+        default: "" // 默认值，可选
+    }
+}
+</pre>
+<p>
+    那么使用组件的时候就可以：
+</p>
+<pre>
+&lt;ui-demo attr1="传递的值" &gt;&lt;/ui-demo&gt;
+</pre>
+<p>
+    自定义的组件中，就可以使用_props获取：
+</p>
+<pre>
+// 结果就是：传递的值
+this._props.attr1
+</pre>
+<h3>
+    data
+</h3>
+<p>
+    定义数据，比如：
+</p>
+<pre>
+option.data = function(){
+    return {
+        val1: "", // 普通数据
+        val2: ref(""), // 浅层双向绑定
+        val3: reactive("") // 深层双向绑定
+    }
+}
+</pre>
+<h3>
+    methods
+</h3>
+<p>
+    定义方法：
+</p>
+<pre>
+option.methods = {
+    doit1(){
+        // todo
+    }
+}
+</pre>

@@ -1,0 +1,62 @@
+<header>
+    父子之间数据传递
+</header>
+<h2>
+    父传递给子组件
+</h2>
+<p>
+    我们可以在定义组件的时候，配置props：
+</p>
+<pre>
+defineElement({
+    props: {
+        info: {
+            type: String,
+            required: true,
+        }
+    }
+})
+</pre>
+<p>
+    然后使用的时候，直接传递：
+</p>
+<pre>
+&lt;ui-demo info="来自父组件的数据"&gt;&lt;/ui-demo&gt;
+</pre>
+<p>
+    在组件内部，就可以获取到这个数据：
+</p>
+<pre>
+this._props.info
+</pre>
+<h2>
+    子传递给父组件
+</h2>
+<p>
+    依赖事件触发的方式，所以定义组件的时候，需要定义好事件：
+</p>
+<pre>
+defineElement({
+    emits: ["eventName"]
+})
+</pre>
+<p>
+    使用组件的时候，直接：
+</p>
+<pre>
+&lt;ui-demo z-on:eventName="doit"&gt;&lt;/ui-demo&gt;
+</pre>
+<p>
+    具体doit定义如下：
+</p>
+<pre>
+doit(event){
+    // event.data 就是来自子组件的数据
+}
+</pre>
+<p>
+    而在子组件中，需要传递给父组件数据的时候，只需要：
+</p>
+<pre>
+this.$emit("eventName", "来自子组件的数据")
+</pre>

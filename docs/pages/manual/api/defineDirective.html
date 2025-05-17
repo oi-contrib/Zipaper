@@ -1,0 +1,54 @@
+<header>
+    defineDirective
+</header>
+<div class="version">
+    始于 v0.1.0
+</div>
+<h2>
+    引入
+</h2>
+<pre>
+import { defineDirective } from "zipaper";
+</pre>
+<h2>
+    使用
+</h2>
+<pre>
+let directive = defineDirective(option);
+</pre>
+<p>
+    其中option是一个JSON，用于定义指令具体行为。
+</p>
+<h3>
+    created
+</h3>
+<p>
+    指令所在元素创建好后执行：
+</p>
+<pre>
+option = {
+    created(el: HTMLElement, binding) => void
+}
+</pre>
+<p>
+    binding格式如下（下同）：
+</p>
+<pre>
+binding = {
+    type: string, // 比如z-on:click就是"click"
+    target: Zipaper,
+    value: any, // 比如z-bind="val1"就是this.val1的值
+    exp: string, // 比如z-bind="val1"就是"val1"
+}
+</pre>
+<h3>
+    update
+</h3>
+<p>
+    数据更新的时候触发：
+</p>
+<pre>
+option = {
+    update(el: HTMLElement, binding) => void
+}
+</pre>

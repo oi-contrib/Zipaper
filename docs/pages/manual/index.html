@@ -1,0 +1,115 @@
+<div class="manual-nav">
+    <h2>
+        全局API
+    </h2>
+    <div class="manual-groups">
+        <div class="manual-group">
+            <h3>
+                应用
+            </h3>
+            <ul>
+                <li onClick="openManualDialog('api/createApp')">
+                    createApp
+                </li>
+                <li onClick="openManualDialog('api/app.mount')">
+                    app.mount
+                </li>
+                <li onClick="openManualDialog('api/app.use')">
+                    app.use
+                </li>
+                <li onClick="openManualDialog('api/app.component')">
+                    app.component
+                </li>
+                <li onClick="openManualDialog('api/app.directive')">
+                    app.directive
+                </li>
+            </ul>
+        </div>
+        <div class="manual-group">
+            <h3>
+                通用
+            </h3>
+            <ul>
+                <li onClick="openManualDialog('api/defineElement')">
+                    defineElement
+                </li>
+                <li onClick="openManualDialog('api/defineDirective')">
+                    defineDirective
+                </li>
+                <li onClick="openManualDialog('api/defineRouter')">
+                    defineRouter
+                </li>
+            </ul>
+        </div>
+    </div>
+    <h2>
+        内置要素
+    </h2>
+    <div class="manual-groups">
+        <div class="manual-group">
+            <h3>
+                指令
+            </h3>
+            <ul>
+                <li onClick="openManualDialog('directive/z-bind')">
+                    z-bind
+                </li>
+                <li onClick="openManualDialog('directive/z-on')">
+                    z-on
+                </li>
+                <li onClick="openManualDialog('directive/z-model')">
+                    z-model
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<style>
+    .manual-nav {
+        padding-bottom: 32px;
+        box-sizing: border-box;
+    }
+
+    .manual-nav>h2 {
+        font-size: 24px;
+        color: #213547;
+        margin: 36px 0;
+        transition: color .5s;
+        padding-top: 36px;
+    }
+
+    .manual-nav>.manual-groups {
+        columns: 3;
+    }
+
+    .manual-nav>.manual-groups>.manual-group {
+        break-inside: avoid;
+        overflow: auto;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 24px 28px;
+        transition: background-color .5s;
+    }
+
+    .manual-nav>.manual-groups>.manual-group>h3 {
+        letter-spacing: -.01em;
+        color: #000000;
+        font-size: 18px;
+        margin-bottom: 1em;
+        transition: color .5s;
+    }
+
+    .manual-nav>.manual-groups>.manual-group>ul>li {
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 2;
+        color: #476582;
+        transition: color .5s;
+        cursor: pointer;
+    }
+
+    .manual-nav>.manual-groups>.manual-group>ul>li:hover {
+        text-decoration: underline;
+    }
+</style>

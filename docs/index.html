@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images/logo.png">
+    <title>Zipaper - The Progressive JavaScript Framework | Zipaper</title>
+    <link rel="stylesheet" href="./styles/normalize.css">
+    <link rel="stylesheet" href="./styles/index.css">
+    <script src="./scripts/index.js"></script>
+    <script>
+        // 控制是否需要缓存
+        var host = window.location.host;
+        window.needCache = !(/^127\.0\.0\.1/.test(host) || /^localhost/.test(host) || host == "");
+    </script>
+</head>
+
+<body>
+
+    <header>
+        <h1 name="nav-item" id="welcome" onClick="changeNav('welcome')">
+            Zipaper
+        </h1>
+        <nav>
+            <span name="nav-item" id="doc/index" onClick="changeNav('doc/index')" class="btn hover-underline">
+                文档
+            </span>
+            <span name="nav-item" id="manual/index" onClick="changeNav('manual/index')" class="btn hover-underline">
+                手册
+            </span>
+            <a href="https://zxl20070701.github.io/notebook/home.html" class="btn hover-underline" target="_blank">
+                支持我们
+            </a>
+            <i class="split-line"></i>
+            <a href="https://github.com/oi-contrib/Zipaper" class="btn github" target="_blank"></a>
+        </nav>
+    </header>
+    <div id="root"></div>
+    <div class="full-dialog-view" id="full-dialog-view"></div>
+
+    <script>
+        var initNav = window.location.hash.split("?")[0].replace(/^#\//, "");
+
+        var navEls = document.getElementsByName("nav-item"), navItems = [];
+        for (var i = 0; i < navEls.length; i++) {
+            navItems.push(navEls[i].getAttribute("id"));
+        }
+
+        if (navItems.indexOf(initNav) < 0) {
+            initNav = "welcome";
+        }
+
+        changeNav(initNav, true);
+    </script>
+</body>
+
+</html>

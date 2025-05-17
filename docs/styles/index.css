@@ -1,0 +1,295 @@
+body {
+    min-width: 1000px;
+    font-family: "Inter var experimental", "Inter var", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    --nav-height: 55px;
+    --version-color: rgb(28, 2, 135);
+    --warn-color: #f66;
+}
+
+body>header {
+    padding: 0 32px;
+    height: var(--nav-height);
+    border-bottom: 1px solid rgba(60, 60, 60, .12);
+    position: sticky;
+    top: 0;
+    background-color: white;
+    display: flex;
+    z-index: 1;
+}
+
+body>header>h1 {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: var(--nav-height);
+    background-image: url("../images/logo.png");
+    background-repeat: no-repeat;
+    background-size: auto 90%;
+    padding-left: 60px;
+    cursor: pointer;
+}
+
+body>header>h1:hover {
+    opacity: .6;
+}
+
+body>header>nav {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    justify-content: flex-end;
+}
+
+body>header>nav>.split-line {
+    height: calc(var(--nav-height) * 0.5);
+    width: 1px;
+    background-color: rgb(230, 230, 230);
+    margin: 0 5px;
+}
+
+body>header>nav>.btn {
+    cursor: pointer;
+    color: black;
+    margin: 0 15px;
+    font-size: 13px;
+}
+
+body>header>nav>.btn.hover-underline:hover,
+body>header>nav>.btn.hover-underline[active="yes"] {
+    color: #a0db67;
+}
+
+body>header>nav>.btn.github {
+    background-image: url("../images/github.svg");
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    height: calc(var(--nav-height) * 0.5);
+    width: calc(var(--nav-height) * 0.5);
+}
+
+#root {
+    width: 1000px;
+    margin: auto;
+}
+
+body>.full-dialog-view {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+    z-index: 10;
+    padding: 0 calc(50vw - 400px);
+    display: none;
+    overflow: auto;
+}
+
+body>.full-dialog-view header {
+    font-size: 28px;
+    padding: 20px 0;
+    font-weight: 800;
+}
+
+body>.full-dialog-view h2 {
+    font-size: 20px;
+    line-height: 2em;
+    padding: 20px 0;
+}
+
+body>.full-dialog-view .close-btn {
+    cursor: pointer;
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    background-image: url("../images/close.png");
+    background-size: 90% auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    font-size: 0;
+}
+
+body>.full-dialog-view>.close-btn:hover {
+    background-size: 95% auto;
+}
+
+body>.full-dialog-view .version,
+body>.full-dialog-view .warn {
+    padding: 12px 24px 12px 30px;
+    margin: 2em 0;
+    border-left-width: 4px;
+    border-left-style: solid;
+    background-color: #f8f8f8;
+    position: relative;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+body>.full-dialog-view .version::before,
+body>.full-dialog-view .warn::before {
+    position: absolute;
+    top: 14px;
+    left: -12px;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    text-align: center;
+    line-height: 20px;
+    font-weight: bold;
+    font-family: "Dosis", "Source Sans Pro", "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+}
+
+body>.full-dialog-view .version {
+    border-left-color: var(--version-color);
+}
+
+body>.full-dialog-view .warn {
+    border-left-color: var(--warn-color);
+}
+
+body>.full-dialog-view .version::before {
+    content: "V";
+    background-color: var(--version-color);
+}
+
+body>.full-dialog-view .warn::before {
+    content: "!";
+    background-color: var(--warn-color);
+}
+
+body>.full-dialog-view pre {
+    padding: 10px;
+    outline: 1px solid #9E9E9E;
+    border-radius: 5px;
+    line-height: 1.4em;
+}
+
+body>.full-dialog-view h3 {
+    font-size: 16px;
+    line-height: 2em;
+}
+
+body>.full-dialog-view h4 {
+    font-size: 14px;
+    line-height: 2em;
+}
+
+body>.full-dialog-view h4::before {
+    content: " ";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent rgb(0, 0, 0);
+    margin-left: 10px;
+}
+
+body>.full-dialog-view p {
+    line-height: 1.6em;
+    color: #3c3939;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 10px 0;
+    white-space: normal;
+    text-indent: 2em;
+}
+
+body>.full-dialog-view table>tbody>tr>* {
+    border-width: 0 1px 1px 0;
+    border-style: solid;
+    border-color: #c1bcbc;
+}
+
+body>.full-dialog-view table>*>tr>td,
+body>.full-dialog-view table>*>tr>th {
+    padding: 0 5px;
+    color: #3c3939;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 2em;
+}
+
+body>.full-dialog-view table>tbody>tr>*:first-child {
+    border-width: 0 1px 1px 1px;
+}
+
+body>.full-dialog-view table>tbody>tr:nth-child(2n) {
+    background-color: #F5F5F5;
+}
+
+body>.full-dialog-view table>tbody>tr:nth-child(2n+1) {
+    background-color: #fff;
+}
+
+body>.full-dialog-view table>thead>tr {
+    background-color: #c1bcbc;
+    border: 1px solid #c1bcbc;
+    color: #fff;
+    white-space: nowrap;
+}
+
+body>.full-dialog-view ul {
+    font-size: 13px;
+    line-height: 2.4em;
+    margin-left: 2.5em;
+}
+
+.doc-content {
+    width: calc(100vw - 520px);
+    padding: 30px;
+    position: relative;
+    scroll-behavior: smooth;
+}
+
+.doc-content>header {
+    font-size: 28px;
+    padding: 20px 0;
+    font-weight: 800;
+}
+
+.doc-content>h2 {
+    font-size: 20px;
+    line-height: 2em;
+    padding: 20px 0;
+}
+
+.doc-content>h3 {
+    font-size: 16px;
+    line-height: 2em;
+    padding: 15px 0;
+}
+
+.doc-content>h4 {
+    font-size: 12px;
+    padding: 15px 0 5px 0;
+    text-decoration: overline;
+}
+
+.doc-content>p {
+    line-height: 1.6em;
+    text-indent: 2em;
+    color: #3c3939;
+    font-weight: 400;
+    font-size: 14px;
+    margin: 10px 0;
+}
+
+.doc-content a {
+    color: #0286b6;
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+.doc-content pre {
+    background-color: rgb(242, 242, 243);
+    padding: 10px;
+    font-size: 13px;
+    font-family: "monospace";
+    font-weight: 400;
+    line-height: 20px;
+    outline: 1px solid gray;
+}

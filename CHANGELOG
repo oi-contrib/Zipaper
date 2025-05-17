@@ -1,0 +1,17 @@
+v0.1.0:
+    date:2025-05-02
+    changes:
+      - 初始化版本
+        1、API
+          * createApp 创建应用
+          （实例API包括：app.mount、app.component、app.directive、app.use）
+          * defineElement 定义元素
+          （实例API包括：$emit、$goto，属性包括：_props）
+          * defineDirective 定义指令
+          * defineRouter 定义路由
+          * ref 定义浅层监听
+          * reactive 定义深层监听
+        2、指令
+          * z-bind 属性设置
+          * z-model 双向绑定
+          * z-on 事件

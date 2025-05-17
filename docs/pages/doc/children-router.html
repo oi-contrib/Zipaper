@@ -1,0 +1,65 @@
+<header>
+    如何配置多级路由？
+</header>
+<h2>
+    一级路由
+</h2>
+<p>
+    配置一级路由非常简单，比如：
+</p>
+<pre>
+defineRouter({
+    routers:[{
+        path: "/xxx1",
+        component: () => import("./pages/xxx1/index.js"),
+    },
+    ......]
+})
+</pre>
+<p>
+    同时，需要在页面添加如下代码来表示当前路由xxx1的渲染位置：
+</p>
+<pre>
+&lt;router&gt;&lt;/router&gt;
+</pre>
+<p>
+    此时的路由类似这样：#/xxx1。如果主动跳转，直接：
+</p>
+<pre>
+this.$goto("/xxx1")
+</pre>
+<h2>
+    二级路由
+</h2>
+<p>
+    首先，我们需要在存在二级路由的地方添加子路由配置，比如：
+</p>
+<pre>
+defineRouter({
+    routers:[{
+        path: "/xxx1",
+        component: () => import("./pages/xxx1/index.js"),
+        children:[{
+            path: "/xxx2",
+            component: () => import("./pages/xxx2/index.js"),
+        },......]
+    },
+    ......]
+})
+</pre>
+<p>
+    因为上面我们是在一级路由xxx1下添加的二级路由xxx2，所以还需要在路由xxx1对应的页面中添加router标签来确定xxx2的渲染位置：
+</p>
+<pre>
+&lt;router&gt;&lt;/router&gt;
+</pre>
+<p>
+    此时的路由类似这样：#/xxx1/xxx2。如果主动跳转，直接：
+</p>
+<pre>
+this.$goto("/xxx1/xxx2")
+</pre>
+</p>
+<p>
+    多级路由类似，在需要的父路由添加子路由即可，理论上可以有任意层。
+</p>

@@ -1,0 +1,52 @@
+<header>
+    项目初始化
+</header>
+<h2>
+    创建项目
+</h2>
+<p>
+    我们准备了一个基于Webpack5搭建的空项目，你可以基于此快速开始。
+</p>
+<p>
+    项目地址：
+    <a href="https://github.com/rapid-start/Zipaper-project" target="_blank">
+        https://github.com/rapid-start/Zipaper-project
+    </a>
+</p>
+<h2>
+    项目说明
+</h2>
+<p>
+    项目结构大体如下：
+</p>
+<pre>
+- components 可选，自定义组件
+- directives 可选，自定义指令
+- pages 页面（和自定义组件一样）
+- main.js 入口
+- router.config.js 定义路由
+- index.html 
+- package.json
+</pre>
+<p>
+    在入口文件挂载好必要的内容后，启动即可，比如：
+</p>
+<pre>
+import { createApp } from "zipaper"
+
+import App from "./pages/App/index.js"
+import router from "./router.config.js"
+import uiSelectFile from "./components/ui-select-file/index.js"
+
+createApp(App)
+    .use(router) // 路由
+    .component("ui-select-file", uiSelectFile) // 注册组件
+    .mount(document.getElementById("root")) // 挂载到页面
+</pre>
+<p>
+    具体页面、组件、指令和路由的定义，你可以访问
+    <a href="./index.html#/manual/index" target="_blank">
+        手册
+    </a>
+    部分进行查阅。
+</p>
