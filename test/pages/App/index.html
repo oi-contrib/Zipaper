@@ -2,21 +2,59 @@
     <h1>
         测试用例 | Zipaper
     </h1>
+
     <h2>
         内置指令
     </h2>
+
+    <h3>1、z-model、z-bind</h3>
     <input z-model="val1" />
     <span>输入框的值：<i z-bind="val1"></i></span>
+    <hr />
+
+    <h3>2、z-on</h3>
     <button z-on:click="setVal1">点击我修改val1</button>
+    <hr />
+
+    <h3>3、z-show</h3>
+    <div>
+        <span>输入框的值长度多于5个显示：<i z-show="val1.length>5">显示了</i></span>
+    </div>
+    <hr />
+
     <h2>
         自定义组件
     </h2>
-    <ui-input></ui-input>
+
+    <h3>1、ui-input</h3>
+    <ui-input z-bind:tip="val3">
+        修改边框颜色：<input type="text" class="ui-input_red-border">
+    </ui-input>
+    <input z-model="val3" placeholder="修改一下再点击打印按钮看看" />
+    <hr />
+
+    <h3>2、ui-select-file</h3>
     <ui-select-file z-on:change="doChange" z-bind:title="title" tips="选择一份或多份PDF文件后，可以把这些文件转成图片"></ui-select-file>
+    <hr />
+
+    <h3>
+        3、ui-model
+    </h3>
+    <input z-model="uimodelkey" />
+    <ui-model z-bind:value="uimodelkey" z-on:input="setUiModelkey"></ui-model>
+    ---
+    <ui-model z-model="uimodelkey"></ui-model>
+    ---
+    <hr />
+
     <h2>
         自定义指令
     </h2>
+
+    <h3>1、z-readonly</h3>
     <input type="text" z-readonly>
+    <hr />
+
     <h2>
         路由
     </h2>

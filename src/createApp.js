@@ -4,13 +4,14 @@ import createElement from "./createElement.js"
 import zOn from "./directives/z-on.js"
 import zBind from "./directives/z-bind.js"
 import zModel from "./directives/z-model.js"
+import zShow from "./directives/z-show.js"
 
 export default function createApp(AppElement) {
-    Zipaper.prototype.__rootInstance = new Zipaper()
+    if (!Zipaper.prototype.__rootInstance) Zipaper.prototype.__rootInstance = new Zipaper()
 
     let app = {
         mount(targetEl) { // 挂载到页面
-            createElement(Zipaper.prototype.__rootInstance, targetEl, AppElement, {}, {})
+            createElement(Zipaper.prototype.__rootInstance, targetEl, AppElement)
 
             Zipaper.prototype.__rootInstance.$goto()
             return app
@@ -35,6 +36,7 @@ export default function createApp(AppElement) {
         .directive("on", zOn)
         .directive("bind", zBind)
         .directive("model", zModel)
+        .directive("show", zShow)
 
     return app
 } 

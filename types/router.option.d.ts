@@ -27,6 +27,13 @@ interface RoutersItem2Type {
     path: string
 
     /**
+     * 元数据
+     */
+    meta?: {
+        [key: string]: any
+    }
+
+    /**
      * 页面组件生成函数，返回一个Promise
      */
     component: () => Promise<ComponentType>

@@ -24,6 +24,9 @@ defineRouter({
     }, {
         path: "/page1",
         component: () => import("./pages/page1/index.js"),
+        meta: {
+            title: "页面一"
+        }
     }, {
         path: "/page2",
         component: () => import("./pages/page2/index.js"),
@@ -36,9 +39,21 @@ defineRouter({
 <pre>
 &lt;router&gt;&lt;/router&gt;
 </pre>
+<h3>
+    跳转
+</h3>
 <p>
     代码中触发跳转的例子：
 </p>
 <pre>
 this.$goto("/page1")
+</pre>
+<h3>
+    元数据
+</h3>
+<p>
+    比如上面定义的meta就是元数据，获取方式：
+</p>
+<pre>
+this._router.meta.title
 </pre>

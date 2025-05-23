@@ -4,8 +4,24 @@ import isValidKey from "./isValidKey.js"
 import { evalExpress } from "eval-express"
 import { isObject } from "./type.js"
 import { proxy, watcher } from "./observe-data.js"
+import { uniqueId } from "./math.js"
 
-export default function createElement(parentInstance, targetEl, element, attr, events, isRouter) {
+export default function createElement(parentInstance, targetEl, element, attr = {}, events = {}, meta = {}, slots = {}) {
+    let __uniqueId = uniqueId()
+
+    // 监听被新组件挂载
+    watcher(targetEl, "__uniqueId__", __uniqueId, function () {
+        if (element.lifecycle.beforeDestroy) element.lifecycle.beforeDestroy.call(instance)
+
+        // 销毁前，从父记录队列中删除自己
+        for (let index = 0; index < parentInstance.__children.length; index++) {
+            if (parentInstance.__children[index].__uniqueId === __uniqueId) {
+                parentInstance.__children.splice(index, 1)
+                break
+            }
+        }
+    })
+    targetEl.innerHTML = ""
 
     let props = {}
     for (let propName in element.props) {
@@ -31,11 +47,15 @@ export default function createElement(parentInstance, targetEl, element, attr, e
 
     let instance = new Zipaper({
         __parent: parentInstance,
-        __isRouter: isRouter,
+        __uniqueId,
+        __el: targetEl,
         _props: props,
+        _router: {
+            meta
+        },
         $emit(eventType, eventData) {
             if (element.emits.indexOf(eventType) > -1) {
-                events[eventType](eventData)
+                if (events[eventType]) events[eventType](eventData)
             } else {
                 throw new Error("Illegal event type, as it is not pre-defined in advance:" + eventType)
             }
@@ -52,7 +72,7 @@ export default function createElement(parentInstance, targetEl, element, attr, e
     }
 
     // 如果js中有数据改变需要更新试图，会触发这个方法
-    let directiveRecord = []
+    let directiveRecord = [], componentRecord = []
     let upateView = throttle(function () {
 
         // 指令
@@ -61,9 +81,19 @@ export default function createElement(parentInstance, targetEl, element, attr, e
             if (directive.lifecycle.update) directive.lifecycle.update.call(instance, item.el, {
                 type: item.type,
                 target: instance,
-                value: item.exp ? evalExpress(instance.__rootInstance, item.exp, instance) : undefined,
+                value: (typeof item.exp === "string" && item.exp) ? evalExpress(instance.__rootInstance, item.exp, instance) : item.exp,
                 exp: item.exp
             })
+        }
+
+        // 组件
+        for (let item of componentRecord) {
+            let componentInstance = item.instance
+            let props = item.props
+            for (let propKey in props) {
+                let propValue = evalExpress(instance.__rootInstance, props[propKey], instance)
+                if (componentInstance._props[propKey] !== propValue) componentInstance._props[propKey] = propValue
+            }
         }
     }, {
         keep: true,
@@ -91,14 +121,6 @@ export default function createElement(parentInstance, targetEl, element, attr, e
         }
     }
 
-    // 如果当前时路由，需要先去掉旧的，销毁
-    if (isRouter) {
-        for (let index = 0; index < parentInstance.__children.length; index++) {
-            if (parentInstance.__children[index].__isRouter) {
-                parentInstance.__children.splice(index, 1)
-            }
-        }
-    }
     parentInstance.__children.push(instance)
 
     // 元素初始化
@@ -108,7 +130,7 @@ export default function createElement(parentInstance, targetEl, element, attr, e
         // style
         if (element.style) {
             let styleEl = document.createElement("style")
-            styleEl.innerText = element.style
+            styleEl.textContent = element.style
             document.getElementsByTagName("head")[0].appendChild(styleEl)
         }
     }
@@ -116,8 +138,9 @@ export default function createElement(parentInstance, targetEl, element, attr, e
     // 元素挂载
     if (element.render) {
         let elArray = element.render(function h(name, config, children) {
+
             let el = document.createElement(name)
-            let subProps = {}, subEvents = {}
+            let subProps = {}, subEvents = {}, bindProps = {}
 
             // 属性
             for (let attrKey in config.attr) {
@@ -132,9 +155,15 @@ export default function createElement(parentInstance, targetEl, element, attr, e
             // 组件
             if (component) {
                 setTimeout(function () {
+                    let componentInstance = createElement(instance, el, component, subProps, subEvents, {}, {
 
-                    // props这个，先不考虑watch的情况，推迟设计
-                    createElement(instance, el, component, subProps, subEvents)
+                        // 目前只支持默认插槽，后续再考虑是否需要扩展
+                        default: children
+                    })
+                    componentRecord.push({
+                        instance: componentInstance,
+                        props: bindProps
+                    })
                 })
             }
 
@@ -152,59 +181,93 @@ export default function createElement(parentInstance, targetEl, element, attr, e
 
                 // 孩子节点
                 for (let itemEl of children) {
-                    if (typeof itemEl === "string") {
-                        let textEl = document.createTextNode("")
-                        textEl.textContent = itemEl
-                        el.appendChild(textEl)
-                    } else {
-                        el.appendChild(itemEl)
+
+                    // 插槽
+                    if (itemEl.nodeName === "SLOT") {
+                        if (slots.default) {
+                            for (let slotEl of slots.default) {
+                                itemEl.appendChild(slotEl)
+                            }
+                        }
                     }
+
+                    el.appendChild(itemEl)
                 }
 
             }
 
             // 指令
-            for (let direcitveKey in config.direcitve) {
+            for (let direcitveItem of config.direcitve) {
+                let direcitveKey = direcitveItem.key
                 let [direcitveName, direcitveType = ""] = direcitveKey.replace(/^z-/, "").split(":")
 
-                let directive = instance.__directives[direcitveName]
-                if (!directive) throw new Error("The direcitve does not exist: " + direcitveName)
+                // 组件上的v-model需要拆解
+                // z-model="modelkey"
+                // 变成：
+                // z-bind:value="modelkey" z-on:input="setModelkey"
+                // 2025年5月12日 于南宁
+                if (component && direcitveName === "model") {
 
-                let exp = config.direcitve[direcitveKey]
+                    // z-bind:value
+                    config.direcitve.push({
+                        key: "z-bind:value",
+                        value: direcitveItem.value
+                    })
 
-                // created
-                let value = exp ? evalExpress(instance.__rootInstance, exp, instance) : undefined
-                if (directive.lifecycle.created) directive.lifecycle.created.call(instance, el, {
-                    type: direcitveType,
-                    target: instance,
-                    value,
-                    exp
-                })
-
-                // 只有当前元素是组件才有收集的意义
-                if (component) {
-                    if (direcitveName === "bind") {
-                        subProps[direcitveType] = value
-                    } else if (direcitveName === "on") {
-                        let eventName = direcitveType.split(".")[0]
-                        subEvents[eventName] = function (eventData) {
-
-                            // 直接调用evnet方法，不是很合理
-                            // value.call(instance, eventData, el)
-
-                            let event = new Event(eventName)
-                            event.data = eventData
-                            el.dispatchEvent(event)
+                    // z-on:input
+                    config.direcitve.push({
+                        key: "z-on:input",
+                        value: function (event, el) {
+                            this[direcitveItem.value] = event.data
                         }
-                    }
+                    })
                 }
 
-                directiveRecord.push({
-                    el,
-                    directive,
-                    type: direcitveType,
-                    exp
-                })
+                // 否则直接生效即可
+                else {
+
+                    let directive = instance.__directives[direcitveName]
+                    if (!directive) throw new Error("The direcitve does not exist: " + direcitveName)
+
+                    let exp = direcitveItem.value
+
+                    // created
+                    let value = (typeof exp === "string" && exp) ? evalExpress(instance.__rootInstance, exp, instance) : exp
+                    if (directive.lifecycle.created) directive.lifecycle.created.call(instance, el, {
+                        type: direcitveType,
+                        target: instance,
+                        value,
+                        exp
+                    })
+
+                    // 只有当前元素是组件才有收集的意义
+                    if (component) {
+                        if (direcitveName === "bind") {
+                            subProps[direcitveType] = value
+
+                            // 更新的时候，更新组件_props用
+                            if (direcitveType && exp) bindProps[direcitveType] = exp
+                        } else if (direcitveName === "on") {
+                            let eventName = direcitveType.split(".")[0]
+                            subEvents[eventName] = function (eventData) {
+
+                                // 直接调用evnet方法，不是很合理
+                                // value.call(instance, eventData, el)
+
+                                let event = new Event(eventName)
+                                event.data = eventData
+                                el.dispatchEvent(event)
+                            }
+                        }
+                    }
+
+                    directiveRecord.push({
+                        el,
+                        directive,
+                        type: direcitveType,
+                        exp
+                    })
+                }
             }
 
             return el
@@ -214,7 +277,7 @@ export default function createElement(parentInstance, targetEl, element, attr, e
         }
     }
 
+    // 创建完成
     if (element.lifecycle.created) element.lifecycle.created.call(instance)
-
     return instance
 }

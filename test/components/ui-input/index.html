@@ -3,6 +3,7 @@
         z-readonly：<input type="text" z-readonly>
     </div>
     <div>
-        修改边框颜色：<input type="text" class="ui-input_red-border">
+        <slot></slot>
     </div>
+    <button z-on:click="logTip">打印_props.tip值</button>
 </div>

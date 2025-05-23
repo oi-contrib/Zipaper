@@ -7,7 +7,9 @@ export default defineElement({
     data() {
         return {
             title: "PDF转图片",
-            val1: ref("默认值")
+            val1: ref("默认值"),
+            val3: ref(""),
+            uimodelkey: ref("")
         }
     },
     created() {
@@ -15,6 +17,10 @@ export default defineElement({
         console.log("App created")
     },
     methods: {
+        setUiModelkey(event, el) {
+            // console.log(">>> set ui-model",event, el)
+            this.uimodelkey = event.data;
+        },
         goto(event, el) {
             // this.$goto("/")
             this.$goto(el.getAttribute("tag"))

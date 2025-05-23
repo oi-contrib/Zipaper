@@ -11,6 +11,7 @@ export default function defineRouter(option) {
                     if (item.component) {
                         list[item.path] = {
                             path: item.path,
+                            meta: item.meta || {},
                             valueOf: item.component,
                             children: item.children ? analyseRouters(item.children) : {}
                         }
@@ -31,6 +32,7 @@ export default function defineRouter(option) {
                     if (currentItem) {
                         pages.push({
                             router: currentItem.path,
+                            meta: currentItem.meta,
                             page: currentItem.valueOf
                         })
                         list = currentItem.children

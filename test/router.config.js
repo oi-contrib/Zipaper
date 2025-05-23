@@ -7,8 +7,14 @@ export default defineRouter({
     }, {
         path: "/page1",
         component: () => import("./pages/page1/index.js"),
+        meta: {
+            title: "页面一"
+        }
     }, {
         path: "/page2",
         component: () => import("./pages/page2/index.js"),
+        meta: {
+            title: "页面二"
+        }
     }]
 })

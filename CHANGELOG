@@ -15,3 +15,25 @@ v0.1.0:
           * z-bind 属性设置
           * z-model 双向绑定
           * z-on 事件
+v0.2.0:
+    date:2025-05-23
+    changes:
+      - 修复bug
+        1、修复无路由install时报错问题
+        2、修复类型定义错误
+          （包括：ComponentOptionType.props、ComponentType.props）
+      - 优化改造
+        1、自定义组件z-bind绑定修改同步更新_props
+        2、组件上的z-model支持自定义
+          （拆解成z-bind:value和z-on:input）
+      - 新增功能
+        1、API
+          * watcher 浅层监听器
+        2、指令
+          * z-show 显示隐藏
+        3、defineElement
+          * beforeDestroy 组件销毁前触发
+          * 插槽 slot
+        4、defineRouter
+          * meta 元数据
+        

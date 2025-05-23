@@ -32,3 +32,8 @@ export let ref: (value: any) => { value: any, type: "ref" }
  * 定义深层监听
  */
 export let reactive: (value: any) => { value: any, type: "reactive" | "ref" }
+
+/**
+ * 浅层监听器
+ */
+export let watcher: (target: Object, key: string, callback: Function) => void

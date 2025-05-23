@@ -10,8 +10,14 @@
     <a href="https://www.npmjs.com/zipaper/zipaper">
         <img src="https://img.shields.io/npm/v/zipaper.svg" alt="npm">
     </a>
+     <a href="https://www.jsdelivr.com/package/npm/zipaper">
+        <img src="https://data.jsdelivr.com/v1/package/npm/zipaper/badge" alt="cdn">
+    </a>
     <a href="https://github.com/oi-contrib/Zipaper" target='_blank'>
         <img alt="GitHub repo stars" src="https://img.shields.io/github/stars/oi-contrib/Zipaper?style=social">
+    </a>
+    <a href="https://github.com/oi-contrib/Zipaper">
+        <img src="https://img.shields.io/github/forks/oi-contrib/Zipaper" alt="forks">
     </a>
 </p>
 

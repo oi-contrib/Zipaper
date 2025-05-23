@@ -6,9 +6,9 @@ export default function Zipaper(option = {}) {
 
     // 缺省值
     mergeOption(this, {
-        __parent: null,
-        __children: [],
-        __router: null
+        __parent: null, // 父对象
+        __children: [], // 子对象
+        __router: null // 记录当前页面路由信息
     })
 
     // 对象初始化
@@ -36,6 +36,8 @@ mergeOption(Zipaper.prototype, {
 
     // 外部方法
     $goto(url) {
+        if (!this.$$router) return
+
         let isInit = false
         if (!url) {
             isInit = true
@@ -69,16 +71,7 @@ mergeOption(Zipaper.prototype, {
                     routerArray[index].page().then(function (element) {
 
                         if (routerArray[index].router != routerInstance.__router.router) {
-
-                            // 销毁旧的
-                            if (routerInstance.__router.instance) {
-
-                                // 销毁的生命周期推迟支持
-                                routerInstance.__router.el.innerHTML = ""
-                            }
-
-                            console.log(routerInstance)
-                            routerInstance.__router.instance = createElement(routerInstance, routerInstance.__router.el, element.default, {}, {}, true)
+                            routerInstance.__router.instance = createElement(routerInstance, routerInstance.__router.el, element.default, {}, {}, routerArray[index].meta)
                             routerInstance.__router.router = routerArray[index].router
                         }
 

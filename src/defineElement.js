@@ -7,18 +7,24 @@ export default function defineElement(option) {
 
                 // 文本节点
                 if (typeof elems[i] === "string") {
-                    temp.push(elem.trim())
+
+                    let textEl = document.createTextNode("")
+                    textEl.textContent = elem.trim()
+                    temp.push(textEl)
                 }
 
                 // 元素节点
                 else {
 
                     let attr = {}
-                    let direcitve = {}
+                    let direcitve = []
 
                     for (let attrKey in elem.attr) {
                         if (/^z-/.test(attrKey)) {
-                            direcitve[attrKey] = elem.attr[attrKey]
+                            direcitve.push({
+                                key: attrKey,
+                                value: elem.attr[attrKey]
+                            })
                         } else {
                             attr[attrKey] = elem.attr[attrKey]
                         }
@@ -71,7 +77,8 @@ export default function defineElement(option) {
         render,
         style: option.style?.content || "",
         lifecycle: {
-            created: option.created
+            created: option.created,
+            beforeDestroy: option.beforeDestroy
         }
     }
 }

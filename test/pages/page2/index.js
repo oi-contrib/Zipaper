@@ -9,5 +9,10 @@ export default defineElement({
     },
     created() {
         console.log("page2 created")
+
+        document.title = this._router.meta.title
+    },
+    beforeDestroy() {
+        console.log("page2 beforeDestroy")
     }
 })

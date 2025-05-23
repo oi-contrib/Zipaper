@@ -16,3 +16,23 @@
 <p>
     需要注意的是，页面录入监听的是input事件。
 </p>
+<h3>
+    组件上
+</h3>
+<div class="version">
+    始于 v0.2.0
+</div>
+<p>
+    对于自定义组件而言，z-model需要拆解，最终等价于：
+</p>
+<pre>
+&lt;input z-bind:value="val1" z-on:input="setValue"/&gt;
+</pre>
+<p>
+    其中setValue实现如下：
+</p>
+<pre>
+setValue(val){
+    this.val1 = val
+}
+</pre>

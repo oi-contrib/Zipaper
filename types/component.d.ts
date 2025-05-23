@@ -9,6 +9,11 @@ export interface ComponentOptionType {
     created?: Function
 
     /**
+     * 组件销毁前触发
+     */
+    beforeDestroy?: Function
+
+    /**
      * 模版对象
      */
     template?: any
@@ -47,21 +52,23 @@ export interface ComponentOptionType {
      * 定义的属性
      */
     props?: {
+        [key: string]: {
 
-        /**
-         * 类型，比如Boolean、String等
-         */
-        type?: any
+            /**
+             * 类型，比如Boolean、String等
+             */
+            type?: any
 
-        /**
-         * 是否必输
-         */
-        required?: boolean
+            /**
+             * 是否必输
+             */
+            required?: boolean
 
-        /**
-         * 默认值
-         */
-        default?: any
+            /**
+             * 默认值
+             */
+            default?: any
+        }
     }
 
 }
@@ -80,6 +87,11 @@ export interface ComponentType {
          * 创建完成触发
          */
         created?: () => void
+
+        /**
+         * 组件销毁前触发
+         */
+        beforeDestroy?: () => void
     }
 
     /**
@@ -109,22 +121,24 @@ export interface ComponentType {
      * 定义的属性
      */
     props: {
+        [key: string]: {
 
-        /**
-         * 是否合法
-         */
-        isValid: (value: any) => boolean
+            /**
+             * 是否合法
+             */
+            isValid: (value: any) => boolean
 
-        /**
-         * 默认值
-         */
-        default: any
+            /**
+             * 默认值
+             */
+            default: any
 
-        /**
-         * 是否必输
-         */
-        required: boolean
+            /**
+             * 是否必输
+             */
+            required: boolean
 
+        }
     }
 
     /**

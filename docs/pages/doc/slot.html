@@ -1,0 +1,35 @@
+<header>
+    插槽的定义和使用
+</header>
+<h2>
+    基本使用
+</h2>
+<p>
+    组件通过slot预留位置，使用组件的时候，可以通过传递具体的内容去替换slot占用的地方，这就是插槽。
+</p>
+<p>
+    比如现在定义了一个组件ui-demo时的模版如下：
+</p>
+<pre>
+&lt;div&gt;
+    &lt;slot&gt;&lt;/slot&gt;
+&lt;/div&gt;
+</pre>
+<p>
+    组件```&lt;slot&gt;&lt;/slot&gt;```占用的位置具体内容不确定，需要使用的时候传递进来，我们就可以这样使用：
+</p>
+<pre>
+&lt;ui-demo&gt;
+    &lt;em style='color:red'>传递给插槽的内容（可以是文本，标签或者组件等）&lt;/em&gt;
+&lt;/ui-demo&gt;
+</pre>
+<p>
+    最终的结果就变成了：
+</p>
+<pre>
+&lt;div&gt;
+    &lt;slot&gt;
+        &lt;em style='color:red'>传递给插槽的内容（可以是文本，标签或者组件等）&lt;/em&gt;
+    &lt;/slot&gt;
+&lt;/div&gt;
+</pre>
