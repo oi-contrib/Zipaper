@@ -7,7 +7,7 @@
     <a href="https://zxl20070701.github.io/toolbox/#/npm-download?packages=zipaper&interval=7">
         <img src="https://img.shields.io/npm/dm/zipaper.svg" alt="downloads">
     </a>
-    <a href="https://www.npmjs.com/zipaper/zipaper">
+    <a href="https://www.npmjs.com/package/zipaper">
         <img src="https://img.shields.io/npm/v/zipaper.svg" alt="npm">
     </a>
      <a href="https://www.jsdelivr.com/package/npm/zipaper">
