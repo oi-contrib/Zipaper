@@ -53,18 +53,18 @@ mergeOption(Zipaper.prototype, {
         let routerArray = this.$$router(url.match(/\/[^/]*/g))
 
         let routerUse = function (index, instance) {
-            if (routerArray[index]) {
-
-                let routerInstance = (function getRouterInstance(instance) {
-                    if (instance.__router) return instance
-                    else {
-                        for (let tempInstance of instance.__children) {
-                            let result = getRouterInstance(tempInstance)
-                            if (result) return result
-                        }
+            let routerInstance = (function getRouterInstance(instance) {
+                if (instance.__router) return instance
+                else {
+                    for (let tempInstance of instance.__children) {
+                        let result = getRouterInstance(tempInstance)
+                        if (result) return result
                     }
+                }
 
-                })(instance)
+            })(instance)
+
+            if (routerArray[index]) {
 
                 // 如果找到了<router></router>
                 if (routerInstance) {
@@ -77,6 +77,11 @@ mergeOption(Zipaper.prototype, {
 
                         routerUse(index + 1, routerInstance.__router.instance)
                     })
+                }
+            } else {
+                if (routerInstance) {
+                    routerInstance.__router.router = ""
+                    routerInstance.__router.el.innerHTML = ""
                 }
             }
         }
