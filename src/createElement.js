@@ -50,6 +50,7 @@ export default function createElement(parentInstance, targetEl, element, attr = 
         __uniqueId,
         __el: targetEl,
         _props: props,
+        _ref: {},
         _router: {
             meta
         },
@@ -148,6 +149,12 @@ export default function createElement(parentInstance, targetEl, element, attr = 
 
                 // attr不会改变，直接copy即可
                 subProps[attrKey] = config.attr[attrKey]
+            }
+
+            if (config.attr.ref) {
+                // 定义：<div ref="myEl"></div>
+                // 获取：this._ref.myEl
+                instance._ref[config.attr.ref] = el
             }
 
             let component = instance.__components[name]

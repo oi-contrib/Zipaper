@@ -15,5 +15,9 @@ export default defineElement({
         console.log("basic page beforeDestroy")
     },
     methods: {
+        logRef() {
+            console.log(this)
+            console.log(this._ref.mybtn)
+        }
     }
 })

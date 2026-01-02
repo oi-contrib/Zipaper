@@ -1,6 +1,6 @@
 {
   "name": "zipaper",
-  "version": "0.2.1",
+  "version": "0.3.0-alpha.0",
   "description": "一个简单易用的小巧前端框架",
   "main": "./dist/Zipaper.min.js",
   "typings": "./types/index.d.ts",
