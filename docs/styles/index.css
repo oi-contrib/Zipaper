@@ -6,6 +6,11 @@ body {
     --warn-color: #f66;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
 body>header {
     padding: 0 32px;
     height: var(--nav-height);
@@ -114,20 +119,24 @@ body>.full-dialog-view>.close-btn:hover {
     background-size: 95% auto;
 }
 
-body>.full-dialog-view .version,
-body>.full-dialog-view .warn {
+/* body>.full-dialog-view  */
+.version,
+/* body>.full-dialog-view */
+.warn {
     padding: 12px 24px 12px 30px;
     margin: 2em 0;
     border-left-width: 4px;
     border-left-style: solid;
-    background-color: #f8f8f8;
+    background-color: #f1f1f1;
     position: relative;
     border-bottom-right-radius: 2px;
     border-top-right-radius: 2px;
 }
 
-body>.full-dialog-view .version::before,
-body>.full-dialog-view .warn::before {
+/* body>.full-dialog-view  */
+.version::before,
+/* body>.full-dialog-view  */
+.warn::before {
     position: absolute;
     top: 14px;
     left: -12px;
@@ -142,20 +151,24 @@ body>.full-dialog-view .warn::before {
     font-size: 14px;
 }
 
-body>.full-dialog-view .version {
+/* body>.full-dialog-view  */
+.version {
     border-left-color: var(--version-color);
 }
 
-body>.full-dialog-view .warn {
+/* body>.full-dialog-view */
+.warn {
     border-left-color: var(--warn-color);
 }
 
-body>.full-dialog-view .version::before {
+/* body>.full-dialog-view  */
+.version::before {
     content: "V";
     background-color: var(--version-color);
 }
 
-body>.full-dialog-view .warn::before {
+/* body>.full-dialog-view  */
+.warn::before {
     content: "!";
     background-color: var(--warn-color);
 }
@@ -239,7 +252,6 @@ body>.full-dialog-view ul {
 }
 
 .doc-content {
-    width: calc(100vw - 520px);
     padding: 30px;
     position: relative;
     scroll-behavior: smooth;

@@ -1,9 +1,3 @@
-<div>
-    <div>
-        z-readonly：<input type="text" z-readonly>
-    </div>
-    <div>
-        <slot></slot>
-    </div>
-    <button z-on:click="logTip">打印_props.tip值</button>
+<div class="ui-input">
+    <input type="text" z-bind:value="modelValue" z-on:input.stop="doInput" />
 </div>

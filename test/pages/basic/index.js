@@ -8,11 +8,12 @@ export default defineElement({
         content: style
     },
     created() {
-        console.log("page2 created")
-
         document.title = this._router.meta.title
+        console.log("basic page created")
     },
     beforeDestroy() {
-        console.log("page2 beforeDestroy")
+        console.log("basic page beforeDestroy")
+    },
+    methods: {
     }
 })

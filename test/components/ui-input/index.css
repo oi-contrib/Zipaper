@@ -1,3 +1,16 @@
-.ui-input_red-border {
-    border: 2px solid red;
+.ui-input{
+    background-color: red;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10px;
+}
+.ui-input input{
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.ui-input input:focus{
+    outline: 1px solid rgb(255, 255, 255);
 }

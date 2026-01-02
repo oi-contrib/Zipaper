@@ -2,19 +2,22 @@
     <div class="menu">
         <h2>一、快速开始</h2>
         <h3 onClick="loadDoc('initProject')">
-            项目初始化
+            1、项目初始化
         </h3>
-        <h3 onClick="loadDoc('children-router')">
-            如何配置多级路由？
+        <h3 onClick="loadDoc('router')">
+            2、如何配置路由？
         </h3>
         <h2>
-            二、组件开发
+            二、页面（或组件）相关
+        </h2>
+        <h3 onClick="loadDoc('slot')">
+            1、插槽的定义和使用
+        </h3>
+        <h2>
+            三、组件相关
         </h2>
         <h3 onClick="loadDoc('prop_emit')">
-            父子之间数据传递
-        </h3>
-        <h3 onClick="loadDoc('slot')">
-            插槽的定义和使用
+            1、父子之间数据传递
         </h3>
     </div>
     <div class="doc-content" id="doc-content"></div>
@@ -27,7 +30,7 @@
     }
 
     .doc-nav>.menu,
-    .doc-nav>.content {
+    .doc-nav>.doc-content {
         height: calc(100vh - 55px);
         overflow: auto;
     }
@@ -42,18 +45,22 @@
 
     .doc-nav>.menu>h2 {
         margin-top: 10px;
-        font-size: 14px;
+        font-size: 15px;
         margin-left: 10px;
     }
 
     .doc-nav>.menu>h3 {
-        font-size: 14px;
+        font-size: 13px;
         cursor: pointer;
-        text-decoration: underline;
         margin-left: 40px;
+        margin-top: 5px;
     }
 
-    .doc-nav>.content {
+    .doc-nav>.menu>h3:hover {
+        text-decoration: underline;
+    }
+
+    .doc-nav>.doc-content {
         flex-grow: 1;
         border-left: 1px solid rgb(221, 221, 218);
     }

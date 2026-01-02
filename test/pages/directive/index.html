@@ -1,0 +1,19 @@
+<div>
+    <h3>
+        1、z-model、z-bind
+    </h3>
+    <p>输入框绑定数据：<i z-bind="inputValue"></i></p>
+    <input type="text" z-model="inputValue" placeholder="请输入内容" />
+
+    <h3>
+        2、z-show、z-on
+    </h3>
+    <button z-on:click="toggleShow">切换显示/隐藏文本</button>
+    <p z-show="isShow">这是一个可显示或隐藏的文本。</p>
+
+    <h3>
+        3、z-on
+    </h3>
+    <input type="text" z-on:keypress.enter="enterPress" placeholder="输入内容后按回车键" />
+
+</div>

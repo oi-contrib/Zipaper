@@ -3,18 +3,30 @@ import { defineRouter } from "../src/index.js"
 export default defineRouter({
     routers: [{
         path: "/",
-        redirect: "/page1"
+        redirect: "/basic"
     }, {
-        path: "/page1",
-        component: () => import("./pages/page1/index.js"),
+        path: "/basic",
+        component: () => import("./pages/basic/index.js"),
         meta: {
-            title: "页面一"
+            title: "测试用例 - Zipaper 基本功能"
         }
     }, {
-        path: "/page2",
-        component: () => import("./pages/page2/index.js"),
+        path: "/directive",
+        component: () => import("./pages/directive/index.js"),
         meta: {
-            title: "页面二"
+            title: "测试用例 - Zipaper 内置指令"
+        }
+    }, {
+        path: "/defineDirective",
+        component: () => import("./pages/defineDirective/index.js"),
+        meta: {
+            title: "测试用例 - Zipaper 自定义指令"
+        }
+    }, {
+        path: "/defineElement",
+        component: () => import("./pages/defineElement/index.js"),
+        meta: {
+            title: "测试用例 - Zipaper 自定义组件"
         }
     }]
 })

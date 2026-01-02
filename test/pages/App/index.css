@@ -1,7 +1,10 @@
-.app-view {
-    text-align: center;
+.app-view>.menu>button {
+    margin: 10px;
+    cursor: pointer;
+}
 
-    h2 {
-        color: red;
-    }
+.app-view>.router {
+    outline: 1px solid red;
+    min-height: 300px;
+    padding:20px;
 }

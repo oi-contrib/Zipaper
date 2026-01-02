@@ -1,27 +1,31 @@
-import { defineElement, watcher } from "../../../src/index.js"
+import { defineElement, watcher, ref } from "../../../src/index.js"
 import template from "./index.html"
 import style from "./index.css"
 
 export default defineElement({
     template,
+    emits: ["input"],
     props: {
-        tip: {
-            default: "tip默认值"
+        value: {
+            default: ""
+        }
+    },
+    data() {
+        return {
+            modelValue: ref(this._props.value)
         }
     },
     style: {
         content: style
     },
     methods: {
-        logTip() {
-            console.log(this._props.tip)
+        doInput(event, target) {
+            this.$emit("input", target.value)
         }
     },
     created() {
-        console.log("ui-input created")
-
-        watcher(this._props, "tip", () => {
-            console.log(this._props.tip)
+        watcher(this._props, "value", () => {
+            this.modelValue = this._props.value
         })
     }
 })

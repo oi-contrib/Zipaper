@@ -36,4 +36,8 @@ v0.2.0:
           * 插槽 slot
         4、defineRouter
           * meta 元数据
-        
+v0.2.1:
+    date:2026-01-02
+    changes:
+      - 修复bug
+        1、修复路由非同级跳转无效问题
