@@ -44,5 +44,7 @@ v0.2.1:
 v0.3.0:
     date:
     changes:
+      - 修复bug
+        1、修复html转义无法正确渲染问题
       - 新增功能
         1、元素获取 this._ref

@@ -9,7 +9,18 @@ export default function defineElement(option) {
                 if (typeof elems[i] === "string") {
 
                     let textEl = document.createTextNode("")
-                    textEl.textContent = elem.trim()
+
+                    textEl.textContent = elem
+                        .trim()
+                        .replace(/&nbsp;/g, " ")
+                        .replace(/&lt;/g, "<")
+                        .replace(/&gt;/g, ">")
+                        .replace(/&amp;/g, "&")
+                        .replace(/&quot;/g, "\"")
+                        .replace(/&#34;/g, "\"")
+                        .replace(/&#39;/g, "'")
+                        .replace(/&apos;/g, "'")
+
                     temp.push(textEl)
                 }
 
