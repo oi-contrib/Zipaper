@@ -1,0 +1,120 @@
+<div class="page-content">
+    <header>
+        z-on
+    </header>
+    <h2>
+        使用
+    </h2>
+    <p>
+        绑定事件，例如：
+    </p>
+    <ui-code>
+        <pre tag="html">
+&lt;button z-on:click="doit"&gt;按钮&lt;/button&gt;
+</pre>
+    </ui-code>
+    <p>
+        其中doit定义如下：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+methods: {
+    doit(event, target){
+        // event是事件，target在这里就是按钮元素
+    }
+}
+</pre>
+    </ui-code>
+    <p>
+        此外，还可以添加修饰符，比如：
+    </p>
+    <ui-code>
+        <pre tag="html">
+&lt;button z-on:click.stop.once="doit"&gt;按钮&lt;/button&gt;
+</pre>
+    </ui-code>
+    <p>
+        修饰符可以使用任意多个，可选的如下：
+    </p>
+    <ul>
+        <li>
+            prevent：阻止默认事件
+        </li>
+        <li>
+            stop：阻止冒泡
+        </li>
+        <li>
+            once：只执行一次
+        </li>
+        <li>
+            enter：回车
+        </li>
+    </ul>
+    <h2>
+        传递参数
+    </h2>
+    <div class="version">
+        始于 v0.3.0
+    </div>
+    <p>
+        绑定的事件，也支持传递参数，比如：
+    </p>
+    <ui-code>
+        <pre tag="html">
+&lt;button z-on:click="doit('我是一个参数')"&gt;按钮&lt;/button&gt;
+</pre>
+    </ui-code>
+    <p>
+        那么doit定义就如下：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+methods: {
+    doit(info){
+        // info的值就是'我是一个参数'
+    }
+}
+</pre>
+    </ui-code>
+    <p>
+        当然，也可以是类似z-bind的拼接值，比如：
+    </p>
+    <ui-code>
+        <pre tag="html">
+&lt;button z-on:click="doit("水果："+fruit)"&gt;按钮&lt;/button&gt;
+</pre>
+    </ui-code>
+    <p>
+        此时doit定义就如下：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+data(){
+    return {
+        fruit:"苹果"
+    }
+},
+methods: {
+    doit(info){
+        // info的值就是'水果：苹果'
+    }
+}
+</pre>
+    </ui-code>
+    <p>
+        当然，原来的
+        <span class="important">
+            event
+        </span>
+        和
+        <span class="important">
+            target
+        </span>
+        作为当前指令的局部值，依旧可以用，比如：
+    </p>
+    <ui-code>
+        <pre tag="html">
+&lt;button z-on:click="doit($event, $target)"&gt;按钮&lt;/button&gt;
+</pre>
+    </ui-code>
+</div>

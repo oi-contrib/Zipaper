@@ -2,7 +2,7 @@ const { parseTemplate } = require("xhtml-to-json");
 
 module.exports = {
     devServer: {
-        port: 20000
+        port: 8080
     },
     module: {
         rules: [{

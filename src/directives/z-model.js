@@ -1,12 +1,36 @@
 import { setValue } from "eval-express"
+import evalExpress from "../tools/evalExpress.js"
 import defineDirective from "../defineDirective.js"
-import { updateValue } from "../xhtml.js"
+import { updateValue } from "../tools/xhtml.js"
 
 export default defineDirective({
     created(el, binding) {
         updateValue(el, binding.value)
         el.addEventListener('input', function () {
-            setValue(binding.target, "." + binding.exp, el.value)
+            let type = el.getAttribute('type'), elValue = el.value
+
+            // 多选
+            if (type == 'checkbox') {
+                let value = el.getAttribute("value"), bindingValue = evalExpress(binding.target, binding.exp)
+
+                // 有value属性，说明是复选框标签多选功能
+                if (value) {
+                    let index = bindingValue.indexOf(value)
+                    if (index > -1) {
+                        elValue = bindingValue.slice(0, index).concat(bindingValue.slice(index + 1))
+                    } else {
+                        bindingValue.push(value)
+                        elValue = bindingValue
+                    }
+                }
+
+                // 否则，说明是复选框标签单选功能
+                else {
+                    elValue = el.checked
+                }
+            }
+
+            setValue(binding.target, "." + binding.exp, elValue)
         }, false);
     },
     update: function (el, binding) {

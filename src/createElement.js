@@ -1,10 +1,10 @@
 import { throttle } from "oipage/web/throttle/index.js"
 import Zipaper from "./Zipaper.js"
 import isValidKey from "./isValidKey.js"
-import { evalExpress } from "eval-express"
-import { isObject } from "./type.js"
+import evalExpress from "./tools/evalExpress.js"
+import { isObject } from "./tools/type.js"
 import { proxy, watcher } from "./observe-data.js"
-import { uniqueId } from "./math.js"
+import { uniqueId } from "./tools/math.js"
 
 export default function createElement(parentInstance, targetEl, element, attr = {}, events = {}, meta = {}, slots = {}) {
     let __uniqueId = uniqueId()
@@ -208,7 +208,7 @@ export default function createElement(parentInstance, targetEl, element, attr = 
                 let direcitveKey = direcitveItem.key
                 let [direcitveName, direcitveType = ""] = direcitveKey.replace(/^z-/, "").split(":")
 
-                // 组件上的v-model需要拆解
+                // 组件上的z-model需要拆解
                 // z-model="modelkey"
                 // 变成：
                 // z-bind:value="modelkey" z-on:input="setModelkey"

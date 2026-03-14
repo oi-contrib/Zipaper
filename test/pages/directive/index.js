@@ -7,7 +7,10 @@ export default defineElement({
     data() {
         return {
             inputValue: ref(""),
-            isShow: ref(false)
+            isShow: ref(false),
+            checkboxValue1: ref(true),
+            checkboxValue2: ref([]),
+            radioValue: ref("")
         }
     },
     methods: {
@@ -18,6 +21,9 @@ export default defineElement({
             // console.log("Key Pressed:", event.key);
             // console.log("Target Element:", target);
             alert(target.value);
+        },
+        print(target, event, ...params) {
+            console.log(target, event, params);
         }
     },
     style: {

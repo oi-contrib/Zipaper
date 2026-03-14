@@ -1,0 +1,99 @@
+.app-view {
+    background-color: white;
+    height: 100vh;
+    min-width: 1000px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+
+    // 顶部导航
+    &>.navbar {
+        background-color: rgb(247, 247, 247);
+        text-align: center;
+        padding: 20px 0;
+        flex-shrink: 0;
+        flex-basis: 80px;
+        overflow: auto;
+        position: relative;
+
+        &>.logo {
+            background-image: url("./images/logo.png");
+            background-repeat: no-repeat;
+            background-size: 80% auto;
+            background-position: center center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 80px;
+            width: 80px;
+            font-size: 0;
+            border-radius: 100%;
+        }
+
+        &>.nav-links {
+            white-space: nowrap;
+
+            &>.nav-item {
+                display: inline-flex;
+                align-items: center;
+                height: 40px;
+                padding: 0 20px;
+                background-color: white;
+                margin: 0 10px;
+                border-radius: 4px;
+
+                &:hover {
+                    cursor: pointer;
+                    color: #a0db67;
+                    background-color: rgb(240, 240, 240);
+                }
+
+                &.active {
+                    background-color: #a0db67;
+                    color: white;
+                }
+            }
+        }
+
+        &>.github-link {
+            background-image: url("./images/github.svg");
+            background-repeat: no-repeat;
+            background-size: 40px auto;
+            background-position: center center;
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 80px;
+            width: 80px;
+            font-size: 0;
+            transition-property: all;
+            transition-duration: 0.5s;
+
+            &:hover {
+                background-size: 45px auto;
+            }
+        }
+    }
+
+    &>router {
+        flex-grow: 1;
+        border-top: 1px solid #eaecef;
+
+        &>div {
+            display: flex;
+            height: 100%;
+
+            &>ui-menu {
+                flex-shrink: 0;
+                flex-basis: 300px;
+            }
+
+            &>router {
+                border-left: 1px solid #eaecef;
+                flex-grow: 1;
+                overflow: auto;
+                height: calc(100vh - 80px);
+            }
+        }
+    }
+}

@@ -1,0 +1,54 @@
+<div class="page-content">
+    <header>
+        概述
+    </header>
+    <p>
+        我们兼容基于各种前端环境的开发，比如
+        <a href="https://webpack.js.org/" target="_blank">Webpack</a>、
+        <a href="https://vite.dev/guide/" target="_blank">Vite</a>、
+        <a href="https://oi-contrib.github.io/OIPage/" target="_blank">OIPage</a>
+        等，甚至只是一个普通的HTTP服务器也是可以的。
+    </p>
+    <p>
+        目前相关插件正在孵化开发中，敬请期待！
+    </p>
+    <h2>
+        xhtml-to-json
+    </h2>
+    <p>
+        在实际开发中，为了简化开发者的麻烦，一般template部分不会直接手写，可以借助库
+        <a href="https://github.com/oi-contrib/xhtmlToJson" target="_blank">xhtmlToJson</a>
+        来辅助：
+    </p>
+    <ui-code>
+        <pre>
+        npm install --save-dev xhtml-to-json
+    </pre>
+    </ui-code>
+    <p>
+        然后，使用其把html字符串变成需要的template格式：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+const { parseTemplate } = require("xhtml-to-json");
+
+let template = parseTemplate("html字符串").toJson();
+    </pre>
+    </ui-code>
+    <p>
+        基于此你就可以很容易的开发一个webpack的loader等。
+    </p>
+    <p>
+        上面是Nodejs环境的例子，事实上针对浏览器上运行也是支持的（本文档就是一个很好的例子）。
+    </p>
+    <h2>
+        ZipaperUI
+    </h2>
+    <p>
+        为Zipaper开发的组件库，源码地址：
+        <a href="https://github.com/handless-ui/ZipaperUI" target="_blank">
+            https://github.com/handless-ui/ZipaperUI
+        </a>
+        ，目前仍在孵化开发中。
+    </p>
+</div>

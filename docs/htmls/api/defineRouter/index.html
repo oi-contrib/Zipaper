@@ -1,0 +1,71 @@
+<div class="page-content">
+    <header>
+        defineRouter
+    </header>
+    <p>
+        定义路由对象
+    </p>
+    <h2>
+        引入
+    </h2>
+    <ui-code>
+        <pre tag="javascript">
+import { defineRouter } from "zipaper";
+</pre>
+    </ui-code>
+    <h2>
+        使用
+    </h2>
+    <p>
+        比如：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+defineRouter({
+    routers: [{
+        path: "/",
+        redirect: "/page1"
+    }, {
+        path: "/page1",
+        component: () => import("./pages/page1/index.js"),
+        meta: {
+            title: "页面一"
+        }
+    }, {
+        path: "/page2",
+        component: () => import("./pages/page2/index.js"),
+    }]
+})
+</pre>
+    </ui-code>
+    <p>
+        定义好路由以后，直接在需要路由切换的地方添加（支持多级路由，通过children属性配置子路由）：
+    </p>
+    <ui-code>
+        <pre tag="html">
+&lt;router&gt;&lt;/router&gt;
+</pre>
+    </ui-code>
+    <h3>
+        跳转
+    </h3>
+    <p>
+        代码中触发跳转的例子：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+this.$goto("/page1")
+</pre>
+    </ui-code>
+    <h3>
+        元数据
+    </h3>
+    <p>
+        比如上面定义的meta就是元数据，获取方式：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+this._router.meta.title
+</pre>
+    </ui-code>
+</div>

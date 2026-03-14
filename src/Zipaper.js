@@ -1,6 +1,6 @@
 import mergeOption from "vislite/lib/mergeOption/index.es.js"
 import createElement from "./createElement.js"
-import urlFormat from "./urlFormat.js"
+import urlFormat from "./tools/urlFormat.js"
 
 export default function Zipaper(option = {}) {
 
@@ -31,8 +31,7 @@ mergeOption(Zipaper.prototype, {
     __rootInstance: null,
 
     // 记录旧的路由
-    // 后续考虑是否对路由的管理进一步设计，看情况再说
-    __router_old: "",
+    __router_old: [],
 
     // 外部方法
     $goto(url) {
@@ -44,13 +43,16 @@ mergeOption(Zipaper.prototype, {
             url = urlFormat().router
         }
 
-        // 如果路由地址没有改变，就什么也不干
-        // 否则记录下新的路由地址
-        if (Zipaper.prototype.__router_old === url) return
-        else Zipaper.prototype.__router_old = url
-
         // 解析后的路由值
         let routerArray = this.$$router(url.match(/\/[^/]*/g))
+
+        let __router_new = []
+        for (let item of routerArray) __router_new.push(item.router)
+
+        // 如果路由地址没有改变，就什么也不干
+        // 否则记录下新的路由地址
+        if (Zipaper.prototype.__router_old.join("") === __router_new.join("")) return
+        else Zipaper.prototype.__router_old = __router_new
 
         let routerUse = function (index, instance) {
             let routerInstance = (function getRouterInstance(instance) {
@@ -87,6 +89,6 @@ mergeOption(Zipaper.prototype, {
         }
         routerUse(0, this.__rootInstance)
 
-        if (!isInit) window.location.href = "#" + url
+        if (!isInit) window.location.href = "#" + __router_new.join("")
     }
 })

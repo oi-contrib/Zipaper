@@ -1,5 +1,5 @@
 import defineDirective from "../defineDirective.js"
-import { updateValue } from "../xhtml.js"
+import { updateValue } from "../tools/xhtml.js"
 
 let doit = function (el, binding) {
 

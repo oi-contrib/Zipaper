@@ -1,0 +1,66 @@
+<div class="page-content">
+    <header>
+        defineDirective
+    </header>
+    <p>
+        定义指令对象
+    </p>
+    <h2>
+        引入
+    </h2>
+    <ui-code>
+        <pre tag="javascript">
+import { defineDirective } from "zipaper";
+</pre>
+    </ui-code>
+    <h2>
+        使用
+    </h2>
+    <ui-code>
+        <pre tag="javascript">
+let directive = defineDirective(option);
+</pre>
+    </ui-code>
+    <p>
+        其中option是一个JSON，用于定义指令具体行为。
+    </p>
+    <h3>
+        created
+    </h3>
+    <p>
+        指令所在元素创建好后执行：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+option = {
+    created(el: HTMLElement, binding) => void
+}
+</pre>
+    </ui-code>
+    <p>
+        binding格式如下（下同）：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+binding = {
+    type: string, // 比如z-on:click就是"click"
+    target: Zipaper,
+    value: any, // 比如z-bind="val1"就是this.val1的值
+    exp: string, // 比如z-bind="val1"就是"val1"
+}
+</pre>
+    </ui-code>
+    <h3>
+        update
+    </h3>
+    <p>
+        数据更新的时候触发：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+option = {
+    update(el: HTMLElement, binding) => void
+}
+</pre>
+    </ui-code>
+</div>

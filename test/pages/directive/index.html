@@ -5,6 +5,26 @@
     <p>输入框绑定数据：<i z-bind="inputValue"></i></p>
     <input type="text" z-model="inputValue" placeholder="请输入内容" />
 
+    <p>
+        type="checkbox" 无value
+        <input type="checkbox" z-model="checkboxValue1">
+        checkboxValue1:<span z-bind="checkboxValue1"></span>
+    </p>
+
+    <p>
+        type="checkbox" 有value
+        <input type="checkbox" value="val1" z-model="checkboxValue2">
+        <input type="checkbox" value="val2" z-model="checkboxValue2">
+        checkboxValue2:<span z-bind="checkboxValue2"></span>
+    </p>
+
+    <p>
+        type="radio"
+        <input type="radio" name="radio" value="val1" z-model="radioValue">val1
+        <input type="radio" name="radio" value="val2" z-model="radioValue">val2
+        radioValue:<span z-bind="radioValue"></span>
+    </p>
+
     <h3>
         2、z-show、z-on
     </h3>
@@ -15,5 +35,7 @@
         3、z-on
     </h3>
     <input type="text" z-on:keypress.enter="enterPress" placeholder="输入内容后按回车键" />
+    <button
+        z-on:click="print($target,$event,'一个值','radioValue='+radioValue,'checkboxValue2='+checkboxValue2)">带参数的按钮，点击我打印若干信息</button>
 
 </div>

@@ -1,4 +1,4 @@
-import urlFormat from "./urlFormat.js"
+import urlFormat from "./tools/urlFormat.js"
 
 export default function defineRouter(option) {
     return {

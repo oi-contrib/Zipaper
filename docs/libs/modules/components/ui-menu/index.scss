@@ -1,0 +1,44 @@
+.ui-menu-view {
+    &>.content {
+        padding: 10px;
+        user-select: none;
+
+        ul {
+            padding-left: 10px;
+        }
+
+        li[is-open='no']>ul {
+            display: none;
+        }
+
+        li[is-open='no']>span:not(:last-child) {
+            background-image: url("./images/close.png");
+        }
+
+        li[is-open='yes']>span:not(:last-child) {
+            background-image: url("./images/open.png");
+        }
+
+        li[is-open]>span:not(:last-child) {
+            background-repeat: no-repeat;
+            background-position: -4px center;
+            background-size: 20px auto;
+            padding-left: 15px;
+        }
+
+        span {
+            font-weight: 400;
+            font-size: 14px;
+            color: #304455;
+            cursor: pointer;
+            margin: 5px 0;
+            width: 100%;
+            display: inline-block;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+    }
+}

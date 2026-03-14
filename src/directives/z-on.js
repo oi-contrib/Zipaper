@@ -1,4 +1,5 @@
 import defineDirective from "../defineDirective.js"
+import evalExpress from "../tools/evalExpress.js"
 
 export default defineDirective({
     created(el, binding) {
@@ -31,7 +32,22 @@ export default defineDirective({
             if (modifier.stop) event.stopPropagation()
             if (modifier.prevent) event.preventDefault()
 
-            binding.value.apply(binding.target, [event, el])
+            if (binding.value) {
+                binding.value.apply(binding.target, [event, el])
+            } else {
+                let exp = binding.exp.trim()
+
+                let fun = exp.match(/^[^(]+/)[0]
+                let args = exp.replace(new RegExp("^" + fun + "\\("), "[").replace(/\)$/, "]")
+
+                let funValue = evalExpress(binding.target, fun)
+                let argsValue = evalExpress(binding.target, args, {
+                    $event: event,
+                    $target: el
+                })
+
+                funValue.apply(binding.target, argsValue)
+            }
 
             if (modifier.once) {
                 el.removeEventListener(types[0], callback, false)

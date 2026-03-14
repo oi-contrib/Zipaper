@@ -1,0 +1,35 @@
+<div class="page-content">
+    <header>
+        watcher
+    </header>
+    <p>
+        监听数据改变
+    </p>
+    <div class="version">
+        始于 v0.2.0
+    </div>
+    <h2>
+        引入
+    </h2>
+    <ui-code>
+        <pre tag="javascript">
+import { watcher } from "zipaper";
+</pre>
+    </ui-code>
+    <h2>
+        使用
+    </h2>
+    <p>
+        监听数据改变：
+    </p>
+    <ui-code>
+        <pre tag="javascript">
+watcher(target, key, ()=>{
+    // todo
+})
+</pre>
+    </ui-code>
+    <p>
+        如果target[key]发生了改变，触发回调。
+    </p>
+</div>

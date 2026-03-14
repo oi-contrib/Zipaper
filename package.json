@@ -1,13 +1,15 @@
 {
   "name": "zipaper",
-  "version": "0.3.0-alpha.0",
+  "version": "0.3.0",
   "description": "一个简单易用的小巧前端框架",
   "main": "./dist/Zipaper.min.js",
   "typings": "./types/index.d.ts",
   "sideEffects": false,
   "scripts": {
+    "postinstall": "node ./scripts/install.js",
     "dev": "oipage-cli serve --config ./oipage.config.js",
-    "build": "rollup --config ./rollup.config.js && terser ./dist/Zipaper.js --compress --mangle --output ./dist/Zipaper.min.js"
+    "build": "rollup --config ./rollup.config.js && terser ./dist/Zipaper.js --compress --mangle --output ./dist/Zipaper.min.js",
+    "docs": "npm run build && oipage-cli serve -p 20000 --open ./docs/index.html"
   },
   "repository": {
     "type": "git",
@@ -36,7 +38,7 @@
     "@rollup/plugin-node-resolve": "^16.0.0",
     "rollup": "^4.6.1",
     "terser": "^5.17.1",
-    "xhtml-to-json": "^0.1.0"
+    "xhtml-to-json": "^0.2.1"
   },
   "dependencies": {
     "eval-express": "^0.1.1",

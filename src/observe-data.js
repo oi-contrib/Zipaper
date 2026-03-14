@@ -1,4 +1,4 @@
-import { isObject } from "./type.js"
+import { isObject } from "./tools/type.js"
 
 // 定义this的一个数据为ref
 export function ref(data) {
