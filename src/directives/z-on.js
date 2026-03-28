@@ -38,7 +38,7 @@ export default defineDirective({
                 let exp = binding.exp.trim()
 
                 let fun = exp.match(/^[^(]+/)[0]
-                let args = exp.replace(new RegExp("^" + fun + "\\("), "[").replace(/\)$/, "]")
+                let args = exp.replace(new RegExp("^" + fun.replace(/\$/g, "\\$") + "\\("), "[").replace(/\)$/, "]")
 
                 let funValue = evalExpress(binding.target, fun)
                 let argsValue = evalExpress(binding.target, args, {
