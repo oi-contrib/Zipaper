@@ -1,0 +1,22 @@
+<div class="page-content">
+    <header>
+        component
+    </header>
+    <div class="version">
+        始于 v0.4.0
+    </div>
+    <h2>
+        使用
+    </h2>
+    <p>
+        动态组件：
+    </p>
+    <ui-code>
+        <pre tag="html">
+&lt;component z-is="currentComponent" &gt;&lt;/component&gt;
+</pre>
+    </ui-code>
+    <p>
+        currentComponent表示组件，可以是一个函数，返回一个Promise对象，组件会在Promise resolve时被加载，或者直接是一个组件对象。
+    </p>
+</div>

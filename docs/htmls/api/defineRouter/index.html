@@ -38,6 +38,9 @@ defineRouter({
 })
 </pre>
     </ui-code>
+    <div class="warn">
+        其中component除了像上面的例子一样是一个函数，返回一个Promise对象，组件会在Promise resolve时被加载，这样可以实现路由组件的按需加载外，也可以直接是一个组件对象（v0.4.0新增）。
+    </div>
     <p>
         定义好路由以后，直接在需要路由切换的地方添加（支持多级路由，通过children属性配置子路由）：
     </p>

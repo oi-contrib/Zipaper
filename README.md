@@ -62,7 +62,7 @@ createApp(App)
 
 具体页面、组件、指令和路由的定义，你可以访问[ 在线文档 ](https://oi-contrib.github.io/Zipaper)进行了解。
 
-此外，在实际开发中，为了简化开发者的麻烦，一般template部分不会直接手写，可以借助库```xhtml-to-json```来辅助：
+此外，在实际开发中，为了简化开发者的麻烦，一般template部分不会直接手写，可以借助库[ xhtml-to-json ](https://github.com/oi-contrib/xhtmlToJson)来辅助：
 
 ```
 npm install --save-dev xhtml-to-json
@@ -78,7 +78,7 @@ let template = parseTemplate("html字符串").toJson();
 
 这里正常是在nodejs环境，比如开发一个webpack的loader。
 
-一个完整的项目搭建用例，你可以访问： [https://github.com/rapid-start/Zipaper-project](https://github.com/rapid-start/Zipaper-project)
+一个完整的项目搭建用例，你可以访问： [Zipaper-project](https://github.com/rapid-start/Zipaper-project)
 
 ## 版权
 

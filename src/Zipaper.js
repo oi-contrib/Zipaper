@@ -70,15 +70,34 @@ mergeOption(Zipaper.prototype, {
 
                 // 如果找到了<router></router>
                 if (routerInstance) {
-                    routerArray[index].page().then(function (element) {
 
+                    let doit = function (component) {
                         if (routerArray[index].router != routerInstance.__router.router) {
-                            routerInstance.__router.instance = createElement(routerInstance, routerInstance.__router.el, element.default, {}, {}, routerArray[index].meta)
+                            routerInstance.__router.instance = createElement(routerInstance, routerInstance.__router.el, component, {}, {}, routerArray[index].meta)
                             routerInstance.__router.router = routerArray[index].router
                         }
 
                         routerUse(index + 1, routerInstance.__router.instance)
-                    })
+                    }
+
+                    // 懒加载页面
+                    if (typeof routerArray[index].page === "function") {
+                        routerArray[index].page().then(function (element) {
+                            let component = typeof element.default === "object" ? element.default : element
+                            doit(component)
+                        })
+                    }
+
+                    // 页面
+                    else if (typeof routerArray[index].page === "object") {
+                        doit(routerArray[index].page)
+                    }
+
+                    // 非法值
+                    else {
+                        routerInstance.__router.el.innerHTML = ""
+                    }
+
                 }
             } else {
                 if (routerInstance) {

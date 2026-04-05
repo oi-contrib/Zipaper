@@ -17,6 +17,12 @@ export default {
                     label: "z-show",
                     page: "z-show"
                 }]
+            }, {
+                label: "组件",
+                children: [{
+                    label: "component",
+                    page: "component"
+                }]
             }]
         }
     },

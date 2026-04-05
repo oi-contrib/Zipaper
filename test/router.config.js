@@ -1,12 +1,15 @@
 import { defineRouter } from "../src/index.js"
 
+import basicValue from "./pages/basic/index.js"
+
 export default defineRouter({
     routers: [{
         path: "/",
         redirect: "/basic"
     }, {
         path: "/basic",
-        component: () => import("./pages/basic/index.js"),
+        component: basicValue,
+        // component: () => import("./pages/basic/index.js"),
         meta: {
             title: "测试用例 - Zipaper 基本功能"
         }
@@ -15,6 +18,12 @@ export default defineRouter({
         component: () => import("./pages/directive/index.js"),
         meta: {
             title: "测试用例 - Zipaper 内置指令"
+        }
+    }, {
+        path: "/component",
+        component: () => import("./pages/component/index.js"),
+        meta: {
+            title: "测试用例 - Zipaper 内置组件"
         }
     }, {
         path: "/defineDirective",
