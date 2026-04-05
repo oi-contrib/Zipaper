@@ -6,6 +6,8 @@ import zBind from "./directives/z-bind.js"
 import zModel from "./directives/z-model.js"
 import zShow from "./directives/z-show.js"
 
+import component from "./components/component.js"
+
 export default function createApp(AppElement) {
     if (!Zipaper.prototype.__rootInstance) Zipaper.prototype.__rootInstance = new Zipaper()
 
@@ -37,6 +39,9 @@ export default function createApp(AppElement) {
         .directive("bind", zBind)
         .directive("model", zModel)
         .directive("show", zShow)
+
+        // 组册组件
+        .component("component", component)
 
     return app
 } 
