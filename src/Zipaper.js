@@ -1,4 +1,4 @@
-import mergeOption from "vislite/lib/mergeOption/index.es.js"
+import { mergeOption } from "oipage/web/option/index.js"
 import createElement from "./createElement.js"
 import urlFormat from "./tools/urlFormat.js"
 
