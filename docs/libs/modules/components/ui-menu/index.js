@@ -49,7 +49,7 @@ export default {
                     // 自动打开折叠
                     if (_this.currentPage === menu.page) {
 
-                        setInterval(() => {
+                        setTimeout(() => {
                             let isOpenEl = spanEl
                             while (isOpenEl) {
                                 if (isOpenEl.getAttribute('is-open')) {
