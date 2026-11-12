@@ -1,0 +1,25 @@
+<div class="page-content">
+    <header>
+        z-html
+    </header>
+    <div class="version">
+        始于 v0.5.0
+    </div>
+    <h2>
+        使用
+    </h2>
+    <p>
+        设置元素的HTML内容：
+    </p>
+    <ui-code>
+        <pre tag="html">
+<div z-html="val1"></div>
+</pre>
+    </ui-code>
+    <h2>
+        安全说明
+    </h2>
+    <p>
+        z-html 会直接设置元素的 innerHTML，动态渲染任意 HTML 可能导致 XSS 漏洞。<b>只应在受信任的内容上使用 z-html，绝不要用于用户提交的内容</b>。如果只需要展示纯文本，请使用 <a href="#/element/directive/z-text">z-text</a>。
+    </p>
+</div>

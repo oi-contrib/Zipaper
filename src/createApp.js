@@ -5,6 +5,8 @@ import zOn from "./directives/z-on.js"
 import zBind from "./directives/z-bind.js"
 import zModel from "./directives/z-model.js"
 import zShow from "./directives/z-show.js"
+import zText from "./directives/z-text.js"
+import zHtml from "./directives/z-html.js"
 
 import component from "./components/component.js"
 
@@ -39,6 +41,8 @@ export default function createApp(AppElement) {
         .directive("bind", zBind)
         .directive("model", zModel)
         .directive("show", zShow)
+        .directive("text", zText)
+        .directive("html", zHtml)
 
         // 组册组件
         .component("component", component)

@@ -16,6 +16,12 @@ export default {
                 }, {
                     label: "z-show",
                     page: "z-show"
+                }, {
+                    label: "z-text",
+                    page: "z-text"
+                }, {
+                    label: "z-html",
+                    page: "z-html"
                 }]
             }, {
                 label: "组件",

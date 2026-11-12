@@ -10,7 +10,9 @@ export default defineElement({
             isShow: ref(false),
             checkboxValue1: ref(true),
             checkboxValue2: ref([]),
-            radioValue: ref("")
+            radioValue: ref(""),
+            textMessage: ref("这是一段文字"),
+            htmlContent: ref("中间<b>加粗</b>的内容"),
         }
     },
     methods: {

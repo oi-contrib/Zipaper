@@ -98,7 +98,8 @@ export default function createElement(parentInstance, targetEl, element, attr = 
         }
     }, {
         keep: true,
-        time: 50
+        time: 30,
+        dida: 300
     })
 
     let data = element.data.call(instance)

@@ -172,6 +172,12 @@ Promise.all([
                         path: "/z-show",
                         component: () => getComponent("htmls/element/directive/z-show/index.js"),
                     }, {
+                        path: "/z-text",
+                        component: () => getComponent("htmls/element/directive/z-text/index.js"),
+                    }, {
+                        path: "/z-html",
+                        component: () => getComponent("htmls/element/directive/z-html/index.js"),
+                    }, {
                         path: "/component",
                         component: () => getComponent("htmls/element/component/component/index.js"),
                     }

@@ -29,4 +29,14 @@
 &lt;div&gt;点击我&lt;/div&gt;
 </pre>
     </ui-code>
+    <h2>
+        安全说明
+    </h2>
+    <div class="version">
+        始于 v0.5.0
+    </div>
+    <p>
+        出于安全考虑，z-bind 不允许设置以 on 开头的事件属性（如 onclick、onload 等），因为这会通过 setAttribute 注册事件处理函数，从而可能引入 XSS 风险。事件绑定请使用 <a
+            href="#/element/directive/z-on">z-on</a> 指令。
+    </p>
 </div>

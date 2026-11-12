@@ -1,0 +1,4 @@
+.directive-demo input[type="text"] {
+    width: 500px;
+    height: 30px;
+}

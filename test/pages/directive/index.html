@@ -1,4 +1,4 @@
-<div>
+<div class="directive-demo">
     <h3>
         1、z-model、z-bind
     </h3>
@@ -37,5 +37,17 @@
     <input type="text" z-on:keypress.enter="enterPress" placeholder="输入内容后按回车键" />
     <button
         z-on:click="print($target,$event,'一个值','radioValue='+radioValue,'checkboxValue2='+checkboxValue2)">带参数的按钮，点击我打印若干信息</button>
+
+    <h3>
+        4、z-text
+    </h3>
+    <p>使用z-text设置文本内容：<span z-text="textMessage"></span></p>
+    <input type="text" z-model="textMessage" placeholder="输入内容更新上面的文本" />
+
+    <h3>
+        5、z-html
+    </h3>
+    <p>使用z-html设置HTML内容：<span z-html="htmlContent"></span></p>
+    <input type="text" z-model="htmlContent" placeholder="输入HTML内容，如&lt;b&gt;粗体&lt;/b&gt;" />
 
 </div>
